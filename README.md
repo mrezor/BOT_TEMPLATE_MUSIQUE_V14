@@ -1,6 +1,6 @@
 Bien le bonjour.
 
-Bot développer en Discord.js V14.8.0.
+Bot développer en Discord.js V14.14.1.
 
 
 
