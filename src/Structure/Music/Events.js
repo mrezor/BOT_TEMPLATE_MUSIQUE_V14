@@ -1,5 +1,8 @@
 const {
-    EmbedBuilder
+    EmbedBuilder,
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonStyle
 } = require('discord.js');
 const {
     Player
@@ -12,24 +15,49 @@ module.exports = async (bot) => {
     bot.player = new Player(bot, bot.config.opt.discordPlayer);
 
     await bot.player.extractors.loadMulti(DefaultExtractors);
-    
+
     const Embed = new EmbedBuilder()
         .setColor(bot.config.embed.color)
         .setTimestamp()
         .setFooter({ text: bot.config.bot.name, iconURL: bot.config.bot.logo });
 
-    bot.player.events.on('playerStart', (queue, track) => {
-        queue.metadata.channel.send({
-            embeds: [
-                Embed.setDescription(`✅ | Je commence à jouer: **${track.title}** !`)
-            ]
-        });
+    bot.player.events.on('playerStart', async (queue, track) => {
+        const row = new ActionRowBuilder().addComponents(
+            new ButtonBuilder()
+                .setCustomId('music_previous')
+                .setEmoji('⏮️')
+                .setStyle(ButtonStyle.Primary),
+            new ButtonBuilder()
+                .setCustomId('music_skip')
+                .setEmoji('⏭️')
+                .setStyle(ButtonStyle.Primary)
+        );
+
+        console.log(track.requestedBy)
+
+        if (queue.metadata.panelMessage) {
+            queue.metadata.panelMessage.edit({
+                embeds: [
+                    Embed.setDescription(`${bot.config.emoji.audio} • Lecture en cours : **${track.title}**\n${bot.config.emoji.user} • Ajouté par : ${track.requestedBy}`)
+                ],
+                components: [row]
+            });
+        } else {
+            const msg = await queue.metadata.channel.send({
+                embeds: [
+                    Embed.setDescription(`${bot.config.emoji.audio} • Lecture en cours : **${track.title}**\n${bot.config.emoji.user} • Ajouté par : ${track.requestedBy}`)
+                ],
+                components: [row]
+            });
+
+            queue.metadata.panelMessage = msg;
+        }
     });
 
     bot.player.events.on('audioTrackAdd', (queue, track) => {
         queue.metadata.channel.send({
             embeds: [
-                Embed.setDescription(`✅ | La musique **${track.title}** as bien été ajouté à la file d'attente !`)
+                Embed.setDescription(`✅ | La musique **"${track.title}"** as bien été ajouté à la file d'attente !`)
             ]
         });
     });
@@ -45,7 +73,7 @@ module.exports = async (bot) => {
     bot.player.events.on('playerSkip', (queue, track) => {
         queue.metadata.channel.send({
             embeds: [
-                Embed.setDescription(`✅ | **${track.title}** ignoré en raison d'un problème !`)
+                Embed.setDescription(`✅ | La musique **"${track.title}"** à été ignoré !`)
             ]
         });
     });

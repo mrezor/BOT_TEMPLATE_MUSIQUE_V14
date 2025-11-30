@@ -13,7 +13,8 @@ module.exports = {
     emoji: {
         valid: '✅',
         error: '❌',
-        audio: '🎧'
+        audio: '🎧',
+        user: '👤'
     },
 
     opt: {

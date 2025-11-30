@@ -45,9 +45,10 @@ class command {
  
         try {
             const { track } = await bot.player.play(channel, args, {
+                requestedBy: interaction.user,
                 nodeOptions: {
-                    leaveOnStop: true,
-                    metadata: interaction
+                    metadata: interaction,
+                    leaveOnStop: true
                 }
             });
      
