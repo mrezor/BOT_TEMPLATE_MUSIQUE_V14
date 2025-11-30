@@ -12,7 +12,8 @@ module.exports = {
 
     emoji: {
         valid: '✅',
-        error: '❌'
+        error: '❌',
+        audio: '🎧'
     },
 
     opt: {
