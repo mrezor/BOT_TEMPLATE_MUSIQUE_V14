@@ -13,7 +13,4 @@ require('./src/Structure/Handler/Command')(bot);
 require('./src/Structure/Handler/Event')(bot);
 
 
-console.log('Test')
-
-
 bot.login(bot.config.clients.token);
