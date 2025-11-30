@@ -12,7 +12,7 @@
 - *Ensuite rendez-vous dans le fichier config.js.*
 - *Mettez votre token dans le fichier. Il est trouvable sur le Discord Developper Portals dans la rubrique "**Bot**".*
 - *Ensuite cliquez sur "**Terminal**", puis "**New Terminal**".*
-- *Tapez la commande `npm install`*
+- *Tapez la commande `npm install`*.
 
 *Voilà votre bot est désormais opérationnel.*
 
