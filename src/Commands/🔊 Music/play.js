@@ -1,4 +1,8 @@
-const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
+const {
+    EmbedBuilder,
+    ApplicationCommandOptionType,
+    MessageFlags
+} = require('discord.js');
 
 class command {
     constructor() {
@@ -25,18 +29,37 @@ class command {
         .setTimestamp()
         .setFooter({ text: bot.config.bot.name, iconURL: bot.config.bot.logo});
 
-        await interaction.deferReply();
+        if (!channel) return interaction.reply({
+            embeds: [
+                Embed.setDescription(`${bot.config.emoji.error} • Tu dois être dans un salon vocal pour jouer une musique !`)
+            ]
+        })
+
+        await interaction.deferReply({
+            flags: MessageFlags.Ephemeral
+        });
  
         try {
             const { track } = await bot.player.play(channel, args, {
                 nodeOptions: {
+                    leaveOnStop: true,
                     metadata: interaction
                 }
             });
      
-            return interaction.followUp({ embeds: [Embed.setDescription(`✅ | La musique **${track.title}** as bien été trouvé 🔊`)] });
+            return interaction.followUp({
+                embeds: [
+                    Embed.setDescription(`✅ | La musique **${track.title}** as bien été trouvé 🔊`)
+                ],
+                flags: MessageFlags.Ephemeral
+            });
         } catch (e) {
-            return interaction.followUp({ embeds: [Embed.setDescription(`Une erreur est survenue : ${e}`)] });
+            return interaction.followUp({
+                embeds: [
+                    Embed.setDescription(`Une erreur est survenue : ${e}`)
+                ],
+                flags: MessageFlags.Ephemeral
+            });
         }
     }
 }
