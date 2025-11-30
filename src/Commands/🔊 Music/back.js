@@ -26,7 +26,7 @@ class command {
         try {
             if(!queue || !queue.isPlaying()) return interaction.followUp({
                 embeds: [
-                    Embed.setDescription(`❌ | Aucune musique en cours de lecture 🔊`)
+                    Embed.setDescription(`${bot.config.emoji.error} • Aucune musique en cours de lecture 🔊`)
                 ]
             });
 
@@ -36,13 +36,13 @@ class command {
 
             return interaction.followUp({
                 embeds: [
-                    Embed.setDescription(`✅ | Je rejoue l'ancienne musique [**${lastSong.title}**](${lastSong.url}) 🔊`)
+                    Embed.setDescription(`${bot.config.emoji.valid} • Je rejoue l'ancienne musique [**${lastSong.title}**](${lastSong.url}) 🔊`)
                 ]
             });
         } catch (e) {
             return interaction.followUp({
                 embeds: [
-                    Embed.setDescription(`Une erreur est survenue : ${e}`)
+                    Embed.setDescription(`${bot.config.emoji.error} • Une erreur est survenue : ${e}`)
                 ]
             });
         }
