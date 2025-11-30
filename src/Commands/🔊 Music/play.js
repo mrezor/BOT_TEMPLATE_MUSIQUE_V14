@@ -25,15 +25,18 @@ class command {
         const args = interaction.options.getString('music');
 
         const Embed = new EmbedBuilder()
-        .setColor(bot.config.embed.color)
-        .setTimestamp()
-        .setFooter({ text: bot.config.bot.name, iconURL: bot.config.bot.logo});
+            .setColor(bot.config.embed.color)
+            .setTimestamp()
+            .setFooter({
+                text: bot.config.bot.name,
+                iconURL: bot.config.bot.logo
+            });
 
         if (!channel) return interaction.reply({
             embeds: [
                 Embed.setDescription(`${bot.config.emoji.error} • Tu dois être dans un salon vocal pour jouer une musique !`)
             ]
-        })
+        });
 
         await interaction.deferReply({
             flags: MessageFlags.Ephemeral
