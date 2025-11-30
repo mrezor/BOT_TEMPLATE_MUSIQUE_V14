@@ -14,9 +14,12 @@ class command {
         const queue = bot.player.nodes.get(interaction.guild);
 
         const Embed = new EmbedBuilder()
-        .setColor(bot.config.embed.color)
-        .setTimestamp()
-        .setFooter({ text: bot.config.bot.name, iconURL: bot.config.bot.logo});
+            .setColor(bot.config.embed.color)
+            .setTimestamp()
+            .setFooter({
+                text: bot.config.bot.name,
+                iconURL: bot.config.bot.logo
+            });
 
         await interaction.deferReply();
  
