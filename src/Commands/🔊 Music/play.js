@@ -49,14 +49,14 @@ class command {
      
             return interaction.followUp({
                 embeds: [
-                    Embed.setDescription(`✅ | La musique **${track.title}** as bien été trouvé 🔊`)
+                    Embed.setDescription(`${bot.config.emoji.valid} • La musique **${track.title}** as bien été trouvé 🔊`)
                 ],
                 flags: MessageFlags.Ephemeral
             });
         } catch (e) {
             return interaction.followUp({
                 embeds: [
-                    Embed.setDescription(`Une erreur est survenue : ${e}`)
+                    Embed.setDescription(`${bot.config.emoji.error} • Une erreur est survenue : ${e}`)
                 ],
                 flags: MessageFlags.Ephemeral
             });
