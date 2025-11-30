@@ -1,4 +1,6 @@
-const { EmbedBuilder } = require('discord.js');
+const {
+    EmbedBuilder
+} = require('discord.js');
 
 class command {
     constructor() {
@@ -9,7 +11,7 @@ class command {
     }
 
     async execute(bot, interaction) {
-        const queue = bot.player.nodes.get(interaction.guild)
+        const queue = bot.player.nodes.get(interaction.guild);
 
         const Embed = new EmbedBuilder()
         .setColor(bot.config.embed.color)
@@ -19,13 +21,27 @@ class command {
         await interaction.deferReply();
  
         try {
-            if(!queue || !queue.isPlaying()) return interaction.followUp({ embeds: [Embed.setDescription(`❌ | Aucune musique en cours de lecture 🔊`)] });
+            if(!queue || !queue.isPlaying()) return interaction.followUp({
+                embeds: [
+                    Embed.setDescription(`❌ | Aucune musique en cours de lecture 🔊`)
+                ]
+            });
 
-            const lastSong = queue.history.previousTrack
-            await queue.history.previous()
-            return interaction.followUp({ embeds: [Embed.setDescription(`✅ | Je rejoue l'ancienne musique [**${lastSong.title}**](${lastSong.url}) 🔊`)] });
+            const lastSong = queue.history.previousTrack;
+
+            await queue.history.previous();
+
+            return interaction.followUp({
+                embeds: [
+                    Embed.setDescription(`✅ | Je rejoue l'ancienne musique [**${lastSong.title}**](${lastSong.url}) 🔊`)
+                ]
+            });
         } catch (e) {
-            return interaction.followUp({ embeds: [Embed.setDescription(`Une erreur est survenue : ${e}`)] });
+            return interaction.followUp({
+                embeds: [
+                    Embed.setDescription(`Une erreur est survenue : ${e}`)
+                ]
+            });
         }
     }
 }
