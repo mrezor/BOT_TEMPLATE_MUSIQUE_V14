@@ -9,9 +9,12 @@
     "start": "node main.js"
   },
   "dependencies": {
-    "discord-player": "^6.1.1",
+    "@discord-player/extractor": "^7.1.0",
+    "discord-player": "^7.1.0",
     "discord.js": "^14.25.1",
-    "ffmpeg-static": "^5.0.1",
-    "opusscript": "^0.0.8"
+    "ffmpeg-static": "^5.3.0",
+    "fs": "^0.0.1-security",
+    "mediaplex": "^1.0.0",
+    "ytdl-core": "^4.11.5"
   }
 }
