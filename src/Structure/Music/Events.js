@@ -4,9 +4,14 @@ const {
 const {
     Player
 } = require('discord-player');
+const {
+    DefaultExtractors
+} = require('@discord-player/extractor');
 
 module.exports = async (bot) => {
     bot.player = new Player(bot, bot.config.opt.discordPlayer);
+
+    await bot.player.extractors.loadMulti(DefaultExtractors);
     
     const Embed = new EmbedBuilder()
         .setColor(bot.config.embed.color)
