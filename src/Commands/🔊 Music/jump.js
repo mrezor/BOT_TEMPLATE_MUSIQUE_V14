@@ -21,7 +21,7 @@ class command {
         const nombre = parseInt(interaction.options.getNumber('nombre'))
 
         const Embed = new EmbedBuilder()
-        .setColor(bot.config.clients.embedColor)
+        .setColor(bot.config.embed.color)
         .setTimestamp()
         .setFooter({ text: bot.config.bot.name, iconURL: bot.config.bot.logo});
 
