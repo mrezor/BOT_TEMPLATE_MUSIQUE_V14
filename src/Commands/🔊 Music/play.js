@@ -35,7 +35,8 @@ class command {
         if (!channel) return interaction.reply({
             embeds: [
                 Embed.setDescription(`${bot.config.emoji.error} • Tu dois être dans un salon vocal pour jouer une musique !`)
-            ]
+            ],
+            flags: MessageFlags.Ephemeral
         });
 
         await interaction.deferReply({
