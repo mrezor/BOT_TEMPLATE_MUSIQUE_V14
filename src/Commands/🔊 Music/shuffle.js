@@ -1,4 +1,6 @@
-const { EmbedBuilder } = require('discord.js');
+const {
+    EmbedBuilder
+} = require('discord.js');
 
 class command {
     constructor() {
@@ -9,23 +11,38 @@ class command {
     }
 
     async execute(bot, interaction) {
-        const queue = bot.player.nodes.get(interaction.guild)
+        const queue = bot.player.nodes.get(interaction.guild);
 
         const Embed = new EmbedBuilder()
-        .setColor(bot.config.embed.color)
-        .setTimestamp()
-        .setFooter({ text: bot.config.bot.name, iconURL: bot.config.bot.logo});
+            .setColor(bot.config.embed.color)
+            .setTimestamp()
+            .setFooter({
+                text: bot.config.bot.name,
+                iconURL: bot.config.bot.logo
+            });
 
         await interaction.deferReply();
  
         try {
-            if(!queue || !queue.isPlaying()) return interaction.followUp({ embeds: [Embed.setDescription(`❌ | Aucune musique en cours de lecture 🔊`)] });
+            if(!queue || !queue.isPlaying()) return interaction.followUp({
+                embeds: [
+                    Embed.setDescription(`${bot.config.emoji.error} • Aucune musique en cours de lecture 🔊`)
+                ]
+            });
 
             await queue.tracks.shuffle();
 
-            return interaction.followUp({ embeds: [Embed.setDescription(`✅ | La file d'attente à bien été mélanger 🔊`)] });
+            return interaction.followUp({
+                embeds: [
+                    Embed.setDescription(`${bot.config.emoji.valid} • La file d'attente à bien été mélanger 🔊`)
+                ]
+            });
         } catch (e) {
-            return interaction.followUp({ embeds: [Embed.setDescription(`Une erreur est survenue : ${e}`)] });
+            return interaction.followUp({
+                embeds: [
+                    Embed.setDescription(`${bot.config.emoji.error} • Une erreur est survenue : ${e}`)
+                ]
+            });
         }
     }
 }
