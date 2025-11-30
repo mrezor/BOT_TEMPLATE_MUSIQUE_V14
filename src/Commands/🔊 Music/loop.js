@@ -29,7 +29,7 @@ class command {
         const Embed = new EmbedBuilder()
         .setColor(bot.config.clients.embedColor)
         .setTimestamp()
-        .setFooter({ text: bot.config.clients.name, iconURL: bot.config.clients.logo});
+        .setFooter({ text: bot.config.bot.name, iconURL: bot.config.bot.logo});
 
         await interaction.deferReply();
  

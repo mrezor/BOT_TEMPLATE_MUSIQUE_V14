@@ -11,7 +11,7 @@ module.exports = {
 
         bot.user.setPresence({
             activities: [{
-                name: bot.config.clients.activity,
+                name: bot.config.bot.activity,
                 type: ActivityType.Watching
             }]
         });

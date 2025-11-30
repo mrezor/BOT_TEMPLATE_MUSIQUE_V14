@@ -1,5 +1,5 @@
 module.exports = {
-    clients: {
+    bot: {
         token: 'TON TOKEN',
         activity: 'by MRezor ❤️',
         name: 'by MRezor ❤️',

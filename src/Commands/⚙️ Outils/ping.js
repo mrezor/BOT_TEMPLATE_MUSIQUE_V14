@@ -27,8 +27,8 @@ class command {
                     )
                     .setTimestamp()
                     .setFooter({
-                        text: bot.config.clients.name,
-                        iconURL: bot.config.clients.logo
+                        text: bot.config.bot.name,
+                        iconURL: bot.config.bot.logo
                     })
             ],
             flags: MessageFlags.Ephemeral
