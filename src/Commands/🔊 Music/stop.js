@@ -26,7 +26,7 @@ class command {
         try {
             if(!queue || !queue.isPlaying()) return interaction.followUp({
                 embeds: [
-                    Embed.setDescription(`❌ | Aucune musique en cours de lecture 🔊`)
+                    Embed.setDescription(`${bot.config.emoji.error} • Aucune musique en cours de lecture 🔊`)
                 ]
             });
 
@@ -34,13 +34,13 @@ class command {
 
             await interaction.followUp({
                 embeds: [
-                    Embed.setDescription(`✅ | La musique à bien été stopper 🔊`)
+                    Embed.setDescription(`${bot.config.emoji.valid} • La musique à bien été stopper 🔊`)
                 ]
             });
         } catch (e) {
             return interaction.followUp({
                 embeds: [
-                    Embed.setDescription(`Une erreur est survenue : ${e}`)
+                    Embed.setDescription(`${bot.config.emoji.error} • Une erreur est survenue : ${e}`)
                 ]
             });
         }
